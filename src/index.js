@@ -47,4 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
   })
 
   //challenge 4
-  
+  filterBreed() {
+      letter = document.getElementById("breed-dropdown")
+      if (letter.value == "a")
+        return document.getElementsByName("breed").beginWith("a")
+      else if (letter.value == "b")
+        return document.getElementsByName("breed").beginWith("b")
+      else if (letter.value == "c")
+        return document.getElementsByName("breed").beginWith("c")
+      else if (letter.value == "d")
+        return document.getElementsByName("breed").beginWith("d")
+  };
