@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const breedUrl = 'https://dog.ceo/api/breeds/list/all'
     fetch(breedUrl)
       .then(response => response.json())
-      .then(results => {
+      .then(function(response) {
   
-        breeds = Object.keys(results.message);
+        breeds = Object.keys(response.message);
         updateBreedList(breeds);
         addBreedSelectListener();
       });
