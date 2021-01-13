@@ -1,14 +1,15 @@
 console.log('%c HI', 'color: firebrick')
 
 // challenge 1
+let breeds = [];
 
 document.addEventListener('DOMContentLoaded', function() {
-  getImages();
+  // getImages();
   renderImages();
-  getBreed();
+  // getBreed();
   renderBreed();
-  addBreedToUl();
-  updateColor();
+  // addBreedToUl();
+  // updateColor();
 })
 
   async function getImages() {
@@ -52,10 +53,37 @@ document.addEventListener('DOMContentLoaded', function() {
   
   async function renderBreed(breed) {
     let breedArray = await getBreed();
-    let breeds = Object.keys(breedArray.message)
-    let breedContainer = document.querySelector("#dog-breeds");
+    let breeds = Object.keys(breedArray.message);
     
+    updateBreedList(breeds);
+    addBreedSelectLisener();
+  }
+
+  function updateBreedList(breeds) {
+    let ul = document.querySelector("#dog-breeds");
+    removeChildren(ul);
     breeds.forEach(breed => addBreedToUl(breed));
+  }
+
+  function removeChildren(element) {
+    let child = element.lastElementChild;
+    while (child) {
+      element.removeChild(child);
+      child = element.lastElementChild;
+    }
+  }
+
+  //challenge 4
+
+  function selectBreedStartingWith(letter) {
+    updateBreedList(breeds.filter(breed => breed.startsWith(letter)));
+  }
+
+  function addBreedSelectLisener() {
+    let breedDropdown = document.querySelector("#breed-dropdown");
+    breedDropdown.addEventListener('change', function(event) {
+      selectBreedStartingWith(event.target.value);
+    });
   }
 
   function addBreedToUl(breed) {
@@ -72,15 +100,16 @@ document.addEventListener('DOMContentLoaded', function() {
     event.target.style.color = 'palevioletred';
   }
 
-  //challenge 4
-  // filterBreed() {
-  //     letter = document.getElementById("breed-dropdown")
-  //     if (letter.value == "a")
-  //       return document.getElementsByName("breed").beginWith("a")
-  //     else if (letter.value == "b")
-  //       return document.getElementsByName("breed").beginWith("b")
-  //     else if (letter.value == "c")
-  //       return document.getElementsByName("breed").beginWith("c")
-  //     else if (letter.value == "d")
-  //       return document.getElementsByName("breed").beginWith("d")
-  // };
+
+  
+  // method 2 attempt
+  // let selectedBreedValue = filterBreed.value
+
+  //     function selectBreed () {
+  //       let breedContainer = document.querySelector("#dog-breeds");
+  //         if (breedContainer.charAt(0) != selectedBreedValue) {
+  //           breedContainer.parentNode.removeChild(li)
+  //         } else {
+  //           breedContainer.appendChild(li);
+  //         }
+  //     }
