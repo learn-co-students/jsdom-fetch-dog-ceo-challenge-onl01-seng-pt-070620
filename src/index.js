@@ -36,13 +36,13 @@ function fetchDogs() {
 
 
 function fetchBreeds() {
-    fetch(breedUrl)
-    .then(resp => resp.json())
+    fetch(breedUrl);
+    .then(resp => resp.json());
     .then(data => {
 
-    breeds = Object.keys(data.message)
-    updateList(breeds)
-    breedListener()
+    breeds = Object.keys(data.message);
+    updateList(breeds);
+    breedListener();
     })
 }
 
@@ -53,7 +53,7 @@ function updateList(breeds) {
 }
 
 function removeBreeds(element) {
-    let child = element.lastElementChild
+    let child = element.lastElementChild;
     while (child) {
       element.removeChild(child);
       child = element.lastElementChild;
@@ -65,7 +65,7 @@ function breedsStartingWith(letter) {
 }
 
 function breedListener () {
-    const dropDown = document.querySelector('#breed-dropdown')
+    const dropDown = document.querySelector('#breed-dropdown');
     dropDown.addEventListener('change', function(e) {
     breedsStartingWith(e.target.value);
     })
@@ -85,6 +85,6 @@ function updateColor(event) {
   
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetchDogs()
-    fetchBreeds()
+    fetchDogs();
+    fetchBreeds();
 })
