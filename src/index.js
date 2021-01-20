@@ -7,15 +7,18 @@ return fetch(imgUrl)
   .then(json => renderImg(json));
 }
 
-
 function renderImg(images) {
+  
+  console.log("images", images)
+  
   const contain = document.querySelector('dog-image-container')
-  images.foreach(img =>{
+  images.forEach(img =>{
   let newImage = document.createElement('img');
   newImage.innerHTML = `<img src="${img}">`
   contain.appendChild(newImage);
   
 })}
+
 
 document.addEventListener('DOMContentLoaded', function() {
   fetchImg()
