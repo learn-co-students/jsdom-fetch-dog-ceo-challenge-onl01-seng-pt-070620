@@ -1,9 +1,10 @@
 console.log('%c HI', 'color: firebrick')
 
+let breeds = []
+
 document.addEventListener("DOMContentLoaded", function(){
     loadImage(); fetchBreed();
 });
-
 
 
 function loadImage() {
@@ -30,12 +31,35 @@ function fetchBreed() {
 }
 
 function addBreed(breed) {
-    const contain = document.getElementById('dog-breeds');
-    cconst keys = Object.keys(breed.message)
-    keys.forEach(r => {
-    const li = document.createElement('li')
-    li.innerHTML = r
-    contain.appendChild(li)
-    })
+    const ul = document.getElementById('dog-breeds');
+    const keys = Object.keys(breed.message)
+    keys.forEach(breed => {
+        const li = document.createElement('li')
+        li.innerHTML = breed
+        ul.appendChild(li)
+        li.addEventListener('click', breedColor);
+    }) 
+}
 
+function breedColor(event) {
+    event.target.style.color = 'green';
+}
+
+//Challenge #4 Incomplete
+
+function refreshList(element) {
+    element.innerHTML = '';
+}
+
+function updateList(breeds) {
+    let ul = document.querySelector("#dog-breeds")
+    refreshList(ul)
+    breeds.forEach(breed => addBreed(breed))
+}
+
+function filterBreeds(){
+    let dropdown =  document.querySelector("#breed-dropdown")
+    dropdown.addEventListener('change', function(event){
+    updateList(breeds.filter((breed) => breed.startsWith(dropdown.value)))
+    })
 }
